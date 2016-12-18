@@ -1,0 +1,13 @@
+[App]
+debug = True
+secret = xxxxxxxxxxxxxxxxxxxxxxxxx
+allowed_hosts = localhost
+static_root = C:\tmp
+
+[Logging]
+level = INFO
+file = django.log
+
+[GitHub]
+client_id = xxxxxxxxxx
+client_secret = xxxxxxxxxxxxxxxxxxxx
