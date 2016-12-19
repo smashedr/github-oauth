@@ -9,8 +9,6 @@
 
 	<div>
 
-		<h2>Discord Bot</h2>
-
 		{% if pgdata.success %}
 			<div class="alert alert-success">
 				<strong>Success!</strong> You have authorized GitHub.
@@ -18,16 +16,12 @@
 			<div class="panel panel-default">
 				<table class="table">
 					<tr>
-						<td>code</td>
-						<td>{{ pgdata.ghdata.code }}</td>
-					</tr>
-					<tr>
-						<td>state</td>
-						<td>{{ pgdata.ghdata.state }}</td>
+						<td>scope</td>
+						<td>{{ pgdata.gh.scope }}</td>
 					</tr>
 					<tr>
 						<td>access_token</td>
-						<td>{{ pgdata.ghdata.access_token }}</td>
+						<td><mark>{{ pgdata.gh.token }}</mark></td>
 					</tr>
 				</table>
 			</div>
