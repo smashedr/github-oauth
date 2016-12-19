@@ -1,6 +1,6 @@
 {% extends "main.html" %}
-{% block python_active %}active{% endblock %}
-{% block title %}Python{% endblock %}
+{% block callback_active %}active{% endblock %}
+{% block title %}Callback{% endblock %}
 
 {% block head %}
 {% endblock %}
@@ -11,17 +11,19 @@
 
 		{% if pgdata.success %}
 			<div class="alert alert-success">
-				<strong>Success!</strong> You have authorized GitHub.
+				<strong>Success!</strong> You have generated an OAuth token.
 			</div>
 			<div class="panel panel-default">
 				<table class="table">
 					<tr>
 						<td>scope</td>
-						<td>{{ pgdata.gh.scope }}</td>
+						<td>{{ pgdata.gh_resp.scope }}</td>
 					</tr>
 					<tr>
 						<td>access_token</td>
-						<td><mark>{{ pgdata.gh.token }}</mark></td>
+						<td>
+							<mark>{{ pgdata.gh_resp.token }}</mark>
+						</td>
 					</tr>
 				</table>
 			</div>

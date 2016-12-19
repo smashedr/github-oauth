@@ -9,5 +9,6 @@ level = INFO
 file = django.log
 
 [GitHub]
+base_url = https://github.com
 client_id = xxxxxxxxxx
 client_secret = xxxxxxxxxxxxxxxxxxxx

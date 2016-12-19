@@ -16,8 +16,8 @@
 	<meta property="og:title" content="GitHub OAuth">
 	<meta property="og:description" content="GitHub OAuth Server.">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="http://{{ request.META.HTTP_HOST }}{% url "home" %}">
-	<meta property="og:image" content="http://{{ request.META.HTTP_HOST }}{% static "images/logo.png" %}">
+	<meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% url "home" %}">
+	<meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "images/logo.png" %}">
 	<meta property="og:image:type" content="image/png">
 
 	<!-- Title -->
@@ -44,15 +44,23 @@
 </head>
 <body>
 
-	<div class="container">
-		<div class="col-xs-12">
+<div class="container">
+	<div class="col-xs-12">
 
-			<a href="{% url 'home' %}"><h1>GitHub OAuth</h1></a>
+		<a href="{% url 'home' %}"><h1>GitHub OAuth</h1></a>
 
-			{% block body %}{% endblock %}
+		{% block body %}{% endblock %}
 
-		</div>
+		<ul>
+			<li>
+				<a href="{{ pgdata.github.base_url }}/settings/applications" target="_blank">
+					Manage GitHub Authorizations
+				</a>
+			</li>
+		</ul>
+
 	</div>
+</div>
 
 </body>
 </html>

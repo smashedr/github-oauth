@@ -9,20 +9,19 @@
 
 	<div>
 
-	<h4>Generate OAuth Tokens</h4>
+		<h4>Generate OAuth Token</h4>
 
-	<p>
-		<strong>
-		<a href="https://github.com/login/oauth/authorize?scope=user:email%20public_repo&client_id={{ pgdata.client_id }}">
-			Click Here
-		</a>
-		</strong>
-		to begin.
-		<br>
-	</p>
-	<p>
-		<em>Note: This will send you to GitHub to authorize this application.</em>
-	</p>
+		<p>Scopes: user:email,public_repo,repo</p>
+		<p>
+			<a class="btn btn-success"
+			   href="{{ pgdata.github.base_url }}/login/oauth/authorize?scope=user:email,public_repo,repo&client_id={{ pgdata.github.client_id }}">
+				Click Here to Begin
+			</a>
+			<br>
+		</p>
+		<p>
+			<em>Note: This will send you to GitHub to authorize this application.</em>
+		</p>
 
 	</div>
 

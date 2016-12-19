@@ -1,45 +1,50 @@
 from django.shortcuts import render
 import logging
 import requests
-from urllib.parse import parse_qs
 from github_oauth.settings import config
 
 logger = logging.getLogger(__name__)
 
+PGDATA = {
+    'github': {
+        'base_url': config.get('GitHub', 'base_url'),
+        'client_id': config.get('GitHub', 'client_id'),
+    }
+}
+
 
 def home(request):
     # View: /
-    pgdata = {'client_id': config.get('GitHub', 'client_id')}
     return render(request, 'home.html', {
-        'pgdata': pgdata,
+        'pgdata': PGDATA,
     })
 
 
 def callback(request):
     # View: /callback/
-    pgdata = {'success': False}
+    PGDATA['success'] = False
     if 'code' in request.GET:
         code = request.GET['code']
         try:
             results = github_token(code)
             if 'access_token' in results:
-                pgdata['gh'] = {
+                PGDATA['gh_resp'] = {
                     'token': results['access_token'],
                     'scope': results['scope'],
                 }
-                pgdata['success'] = True
+                PGDATA['success'] = True
             elif 'error_description' in results:
-                pgdata['error'] = results['error_description']
+                PGDATA['error'] = results['error_description']
             else:
-                pgdata['error'] = 'Unable to parse GitHub response data.'
+                PGDATA['error'] = 'Unable to parse GitHub response data.'
         except Exception as error:
             logger.exception(error)
-            pgdata['error'] = error
+            PGDATA['error'] = error
     else:
-        pgdata['error'] = 'Unable to parse code from query string.'
+        PGDATA['error'] = 'Unable to parse code from query string.'
 
     return render(request, 'callback.html', {
-        'pgdata': pgdata,
+        'pgdata': PGDATA,
     })
 
 
@@ -47,7 +52,7 @@ def github_token(code):
     """
     Post OAuth code to GitHub and parse response data
     """
-    uri = 'https://github.com/login/oauth/access_token'
+    uri = '%s/login/oauth/access_token' % config.get('GitHub', 'base_url')
     data = {
         'client_id': config.get('GitHub', 'client_id'),
         'client_secret': config.get('GitHub', 'client_secret'),
