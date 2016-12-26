@@ -1,5 +1,7 @@
 # Django GitHub OAuth
 
+[![build status](https://git.cssnr.com/shane/github-oauth/badges/master/build.svg)](https://git.cssnr.com/shane/github-oauth/commits/master) [![coverage report](https://git.cssnr.com/shane/github-oauth/badges/master/coverage.svg)](https://git.cssnr.com/shane/github-oauth/commits/master)
+
 GitHub OAuth Server in Django
 
 https://developer.github.com/enterprise/2.8/v3/oauth/
